@@ -1,14 +1,14 @@
-import sqlite3 from 'sqlite3'
-import { open } from 'sqlite'
+import sqlite3 from "sqlite3";
+import { open } from "sqlite";
 
-export const connectDB = () =>{
-    return open({
-        fileName: 'chat.db',
-        driver: sqlite3.Database
-    })
-}
-export const intializeDB = async(db) =>{
-    await db.exec(`
+export const connectDB = () => {
+  return open({
+    fileName: "chat.db",
+    driver: sqlite3.Database,
+  });
+};
+export const intializeDB = async (db) => {
+  await db.exec(`
         CREATE TABLE IF NOT EXISTS users(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT UNIQUE,
@@ -29,5 +29,5 @@ export const intializeDB = async(db) =>{
         FOREIGN KEY(room_id) REFERENCES rooms(id),
         FOREIGN KEY(user_id) REFERENCES users(id)
         )
-        `)
-}
+        `);
+};
