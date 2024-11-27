@@ -2,8 +2,8 @@ import express from 'express'
 import { createServer } from 'http'
 import { Server } from 'socket.io'
 import cors from 'cors'
-import { connectDB, intializeDB } from './database'
-import { authenticate, generateToken } from './auth'
+import { connectDB, intializeDB } from './database/database.js'
+import { authenticate, generateToken } from './routes/auth.js'
 
 const app = express()
 const server = createServer(app)
