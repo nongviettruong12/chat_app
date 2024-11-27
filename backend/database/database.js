@@ -1,20 +1,39 @@
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./chat.db');
+import sqlite3 from 'sqlite3';
+import { open } from 'sqlite';
+let db
+const connectDB = async () => {
+  if (!db) {
+    db = await open({
+      filename: './chatapp.db',
+      driver: sqlite3.Database,
+    })
+  }
+  return db
+};
 
-db.serialize (() =>{
-  db.run (`
+const initializeUserTable = async () => {
+  const db = await connectDB();
+  
+  // Tạo bảng người dùng nếu chưa tồn tại
+  await db.run(`
     CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT UNIQUE NOT NULL,
-    password TEXT NOT NULL
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      username TEXT UNIQUE NOT NULL,
+      password TEXT NOT NULL
     )
-    `)
-  db.run (`
+  `);
+
+  // Tạo bảng phòng nếu chưa tồn tại
+  await db.run(`
     CREATE TABLE IF NOT EXISTS rooms (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
-    `)
-})
-module.exports = db
+  `);
+  
+  return db;
+};
+
+// Expose cả hàm kết nối và khởi tạo bảng
+export { connectDB, initializeUserTable };

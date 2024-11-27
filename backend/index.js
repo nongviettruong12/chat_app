@@ -1,13 +1,13 @@
-const express = require('express');
-const http = require('http');
-const { Server } = require('socket.io')
-const cors = require('cors');
-const { verifyToken } = require('./middleware/authMiddleware')
-const authRoutes = require('./routes/auth')
-const roomRoutes = require('./routes/room')
+import express from 'express';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
+import cors from 'cors';
+import  {verifyToken}  from './middleware/authMiddleware.js';
+import authRoutes from './routes/auth.js';
+import roomRoutes from './routes/room.js';
 
 const app = express();
-const server = http.createServer(app)
+const server = createServer(app)
 const io = new Server(server, { cors: { origin: '*'} })
 
 app.use(cors())
@@ -22,6 +22,10 @@ io.on('connection', (socket) =>{
     console.log('user connected', socket.id);
     
     socket.on('joinRoom', (room) =>{
+        if (!room) {
+            socket.emit('error','room does not exist')
+            return
+        }
         socket.join(room)
         io.to(room).emit('message', `user joined ${room}`)
     })
