@@ -12,7 +12,7 @@ router.post('/register', (req, res) =>{
 
     db.run (
       'INSERT INTO users ( username, password ) VALUES (?, ?)',
-      [username, password],
+      [username, hashedPassword],
       (err) =>{
         if (err) {
           return res.status(400).json({ error: 'Username already exists' });
