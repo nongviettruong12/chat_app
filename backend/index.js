@@ -2,7 +2,9 @@ const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io')
 const cors = require('cors');
-const db = require('./database/database');
+const { verifyToken } = require('./middleware/authMiddleware')
+const authRoutes = require('./routes/auth')
+const roomRoutes = require('./routes/room')
 
 const app = express();
 const server = http.createServer(app)
@@ -11,8 +13,8 @@ const io = new Server(server, { cors: { origin: '*'} })
 app.use(cors())
 app.use(express.json())
 
-app.use('/auth', require('./routes/auth'))
-app.use('/rooms', require('./routes/room'))
+app.use('/auth', authRoutes)
+app.use('/rooms', verifyToken, roomRoutes)
 
 const users = {}
 
