@@ -12,7 +12,9 @@ const connectDB = async () => {
 };
 
 const initializeUserTable = async () => {
-  const db = await connectDB();
+  console.log('[DB] Connected to database');
+  try {
+    const db = await connectDB();
   
   // Tạo bảng người dùng nếu chưa tồn tại
   await db.run(`
@@ -33,6 +35,10 @@ const initializeUserTable = async () => {
   `);
   
   return db;
+  } catch (error) {
+      console.log('err',error);
+  }
+  
 };
 
 // Expose cả hàm kết nối và khởi tạo bảng

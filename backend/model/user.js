@@ -20,19 +20,19 @@ export const User = {
 
     // Tạo người dùng mới
     create: async (username, password) => {
-        const db = await initializeUserTable();  // Khởi tạo kết nối DB
+        const db = await initializeUserTable();
         return new Promise((resolve, reject) => {
             db.run(
                 'INSERT INTO users (username, password) VALUES (?, ?)',
                 [username, password],
                 function (err) {
                     if (err) {
-                        reject(err);  // Nếu có lỗi, trả về lỗi
-                    } else {
-                        // Tạo token cho người dùng vừa tạo
-                        const token = jwt.sign({ id: this.lastID, username }, SECRET_KEY, { expiresIn: '1h' });
-                        resolve({ userId: this.lastID, token });  // Trả về ID người dùng và token
+                        console.error('[DB Error]', err.message);
+                        return reject(err);
                     }
+                    console.log('[DB Insert Success]', this.lastID);
+                    const token = jwt.sign({ id: this.lastID, username }, process.env.SECRET_KEY, { expiresIn: '1h' });
+                    resolve({ userId: this.lastID, token });
                 }
             );
         });

@@ -1,10 +1,13 @@
 import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
+import dotenv from 'dotenv';
 import cors from 'cors';
 import  {verifyToken}  from './middleware/authMiddleware.js';
 import authRoutes from './routes/auth.js';
 import roomRoutes from './routes/room.js';
+
+dotenv.config();
 
 const app = express();
 const server = createServer(app)
@@ -15,9 +18,9 @@ app.use(express.json())
 
 app.use('/auth', authRoutes)
 app.use('/rooms', verifyToken, roomRoutes)
-
-const users = {}
-
+app.get('/', (req, res) => {
+    res.send('Server is running');
+});
 io.on('connection', (socket) =>{
     console.log('user connected', socket.id);
     
