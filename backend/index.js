@@ -19,7 +19,7 @@ app.use(express.json())
 app.use('/auth', authRoutes)
 app.use('/rooms', verifyToken, roomRoutes)
 app.get('/', (req, res) => {
-    res.send('Server is running');
+    res.send('Server is running ');
 });
 io.on('connection', (socket) =>{
     console.log('user connected', socket.id);
@@ -37,4 +37,4 @@ io.on('connection', (socket) =>{
     })
 })
 const PORT = 5000
-server.listen(PORT, () => console.log(`server running on port ${PORT}`));
+server.listen(PORT, () => console.log(`server running on http://localhost:${PORT}`));
