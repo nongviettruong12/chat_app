@@ -20,7 +20,7 @@ const Room = {
             });
         });
     },
-
+// async fnc: async
     delete: async (id) => {
         const db = await initializeUserTable();
         return new Promise((resolve, reject) => {
