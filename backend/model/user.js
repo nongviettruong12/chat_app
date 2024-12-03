@@ -1,42 +1,13 @@
-import jwt from 'jsonwebtoken';
-import { initializeUserTable } from '../database/database.js';  // Import hàm khởi tạo bảng
+import mongoose from 'mongoose';
 
-const SECRET_KEY = process.env.SECRET_KEY;  // Thay đổi khóa bí mật này
+const userSchema = ({
+    email: { type: String, required: true, unique: true },
+  username: { type: String, required: true },
+  password: { type: String, required: true },
+  phone: { type: String, required: true },
+  address: { type: String, required: true },
+})
 
-export const User = {
-    // Tìm kiếm người dùng theo tên người dùng
-    findByUsername: async (username) => {
-        const db = await initializeUserTable();  // Khởi tạo kết nối DB
-        return new Promise((resolve, reject) => {
-            db.get('SELECT * FROM users WHERE username = ?', [username], (err, row) => {
-                if (err) {
-                    reject(err);  // Nếu có lỗi, trả về lỗi
-                } else {
-                    resolve(row);  // Nếu không có lỗi, trả về kết quả
-                }
-            });
-        });
-    },
 
-    // Tạo người dùng mới
-    create: async (username, password) => {
-        const db = await initializeUserTable();
-        return new Promise((resolve, reject) => {
-            db.run(
-                'INSERT INTO users (username, password) VALUES (?, ?)',
-                [username, password],
-                function (err) {
-                    if (err) {
-                        console.error('[DB Error]', err.message);
-                        return reject(err);
-                    }
-                    console.log('[DB Insert Success]', this.lastID);
-                    const token = jwt.sign({ id: this.lastID, username }, process.env.SECRET_KEY, { expiresIn: '1h' });
-                    resolve({ userId: this.lastID, token });
-                }
-            );
-        });
-    }
-};
-
+const User = mongoose.model('User', userSchema);
 export default User;

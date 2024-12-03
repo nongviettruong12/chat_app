@@ -1,0 +1,152 @@
+{
+  "users": [
+    {
+      "id": "4797",
+      "email": "truongnv@gem-corp.tech",
+      "username": "truongdz",
+      "password": "123456789",
+      "confirmPassword": "123456789",
+      "phone": "0888685163",
+      "address": "abc"
+    },
+    {
+      "id": "4129",
+      "email": "truongnv@gem-corp.tech",
+      "username": "truongdz",
+      "password": "123456789",
+      "confirmPassword": "123456789",
+      "phone": "0888685163",
+      "address": "abc"
+    },
+    {
+      "id": "6e16",
+      "email": "truongnv@gem-corp.tech",
+      "username": "truongdz",
+      "password": "123456789",
+      "confirmPassword": "123456789",
+      "phone": "0888685163",
+      "address": "abc"
+    },
+    {
+      "id": "0d50",
+      "email": "truongnv@gem-corp.tech",
+      "username": "truongdz",
+      "password": "123456789",
+      "confirmPassword": "123456789",
+      "phone": "0888685163",
+      "address": "abcd"
+    },
+    {
+      "id": "4328",
+      "email": "truongnv@gem-corp.tech",
+      "username": "truongdz",
+      "password": "123456789",
+      "confirmPassword": "123456789",
+      "phone": "0888685163",
+      "address": "abcd"
+    },
+    {
+      "id": "e0b1",
+      "email": "truongnv@gem-corp.tech",
+      "username": "truongdz",
+      "password": "123456789",
+      "confirmPassword": "123456789",
+      "phone": "0888685163",
+      "address": "abcd"
+    },
+    {
+      "id": "a72d",
+      "email": "truongnv@gem-corp.tech",
+      "username": "truongdz",
+      "password": "123456789",
+      "confirmPassword": "123456789",
+      "phone": "0888685163",
+      "address": "abcd"
+    },
+    {
+      "id": "a532",
+      "email": "truongnv@gem-corp.tech",
+      "username": "truongdz",
+      "password": "123456789",
+      "confirmPassword": "123456789",
+      "phone": "0888685163",
+      "address": "abcd"
+    },
+    {
+      "id": "c501",
+      "email": "truongnv@gem-corp.tech",
+      "username": "truongdz",
+      "password": "123456789",
+      "confirmPassword": "123456789",
+      "phone": "0888685163",
+      "address": "abcd"
+    },
+    {
+      "id": "6fed",
+      "email": "truongnv@gem-corp.tech",
+      "username": "truongdz",
+      "password": "123456789",
+      "confirmPassword": "123456789",
+      "phone": "0888685163",
+      "address": "abcd"
+    },
+    {
+      "id": "5dc1",
+      "email": "truongnv@gem-corp.tech",
+      "username": "truongdz",
+      "password": "123456789",
+      "confirmPassword": "123456789",
+      "phone": "0888685163",
+      "address": "abcda"
+    },
+    {
+      "id": "2afc",
+      "email": "truongnv@gem-corp.tech",
+      "username": "truongdz",
+      "password": "123",
+      "confirmPassword": "123",
+      "phone": "123213123123",
+      "address": "abc"
+    },
+    {
+      "id": "8603",
+      "email": "truongnv@gem-corp.tech",
+      "username": "truongdz123",
+      "password": "123",
+      "confirmPassword": "123",
+      "phone": "123213123123",
+      "address": "abc"
+    },
+    {
+      "id": "b6b7",
+      "email": "asdasdasdsadsadsa@gmail.com",
+      "username": "truongdzasdasdasd",
+      "password": "123456789",
+      "confirmPassword": "123456789",
+      "phone": "0888685163",
+      "address": "abcd"
+    },
+    {
+      "id": "bf96",
+      "email": "asdasdasdsadsadsa@gmail.com",
+      "username": "truongdzasdasdasd",
+      "password": "123456789",
+      "confirmPassword": "123456789",
+      "phone": "0888685163",
+      "address": "abcd"
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "title": "Post 1",
+      "content": "Lorem ipsum"
+    },
+    {
+      "id": "2",
+      "title": "Post 2",
+      "content": "Dolor sit amet"
+    }
+  ],
+  "rooms": []
+}
