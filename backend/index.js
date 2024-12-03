@@ -3,10 +3,9 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import  {verifyToken}  from './middleware/authMiddleware.js';
 import authRoutes from './routes/auth.js';
 import roomRoutes from './routes/room.js';
-
+import connectDB from './database/database.js';
 dotenv.config();
 
 const app = express();
@@ -17,7 +16,7 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/auth', authRoutes)
-app.use('/rooms', verifyToken, roomRoutes)
+app.use('/rooms', roomRoutes)
 app.get('/', (req, res) => {
     res.send('Server is running ');
 });
@@ -26,7 +25,7 @@ io.on('connection', (socket) =>{
     
     socket.on('joinRoom', (room) =>{
         if (!room) {
-            socket.emit('error','room does not exist')
+            socket.emit('error',{message:'room does not exist' })
             return
         }
         socket.join(room)
@@ -36,5 +35,6 @@ io.on('connection', (socket) =>{
         console.log('user disconnect',socket.id);
     })
 })
+connectDB(process.env.MONGO_URL);
 const PORT = 3000
 server.listen(PORT, () => console.log(`server running on http://localhost:${PORT}`));

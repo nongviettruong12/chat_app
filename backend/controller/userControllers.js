@@ -1,7 +1,6 @@
 import User from '../model/user.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-
 const SECRET_KEY = process.env.SECRET_KEY;
 
 const UserController = {
@@ -37,7 +36,13 @@ const UserController = {
 
       // Tạo token JWT
       const token = jwt.sign({ id: newUser._id }, SECRET_KEY, { expiresIn: '1h' });
-
+      console.log("process.env.SECRET_KEY:", process.env.SECRET_KEY);
+      if (!SECRET_KEY) {
+        throw new Error('secret key is not defined');
+      }
+      console.log('secret key',SECRET_KEY);
+      
+      await newUser.save();
       res.status(201).json({
         message: "User created successfully",
         username,
